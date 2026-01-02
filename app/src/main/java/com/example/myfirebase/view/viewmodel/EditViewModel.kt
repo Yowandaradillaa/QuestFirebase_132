@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myfirebase.modeldata.DetailSiswa
 import com.example.myfirebase.modeldata.toDataSiswa
 import com.example.myfirebase.modeldata.toUiStateSiswa
+import com.example.myfirebase.view.route.DestinasiEdit
 import kotlinx.coroutines.launch
 
 class EditViewModel(
@@ -22,7 +23,7 @@ class EditViewModel(
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
-    private val siswaId: Int = checkNotNull(savedStateHandle[DestinasiEdit.siswaIdArg])
+    private val siswaId: Int = checkNotNull(savedStateHandle[DestinasiEdit.itemIdArg])
 
     init {
         Log.d("EditViewModel", "=== EDIT VIEWMODEL INITIALIZED ===")

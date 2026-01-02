@@ -9,6 +9,7 @@ import com.example.myfirebase.modeldata.Siswa
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
+import com.example.myfirebase.view.route.DestinasiDetail
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -23,7 +24,7 @@ class DetailViewModel(
     private val repositorySiswa: RepositorySiswa
 ) : ViewModel() {
 
-    private val siswaId: Int = checkNotNull(savedStateHandle[DestinasiDetail.siswaIdArg])
+    private val siswaId: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
 
     var statusUIDetail: StatusUIDetail by mutableStateOf(StatusUIDetail.Loading)
         private set
