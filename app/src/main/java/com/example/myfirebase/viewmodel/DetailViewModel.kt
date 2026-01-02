@@ -1,4 +1,4 @@
-package com.example.myfirebase.view.viewmodel
+package com.example.myfirebase.viewmodel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
