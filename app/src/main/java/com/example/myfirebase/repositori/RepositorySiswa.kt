@@ -18,3 +18,17 @@ class FirebaseRepositorySiswa : RepositorySiswa {
             Log.d("Repository", "Fetching data...")
             val docs = collection.get().await().documents
             Log.d("Repository", "Found ${docs.size} documents")
+            docs.map { doc ->
+                Log.d("Repository", "Doc ID: ${doc.id}, Data: ${doc.data}")
+                Siswa(
+                    id = doc.getLong("id") ?: 0L,
+                    nama = doc.getString("nama") ?: "",
+                    alamat = doc.getString("alamat") ?: "",
+                    telpon = doc.getString("telpon") ?: ""
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("Repository", "Error: ${e.message}", e)
+            emptyList()
+        }
+    }
