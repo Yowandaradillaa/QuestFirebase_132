@@ -7,6 +7,9 @@ import com.example.myfirebase.repositori.RepositorySiswa
 import androidx.lifecycle.ViewModel
 import com.example.myfirebase.modeldata.Siswa
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 sealed interface StatusUIDetail {
     data class Success(val siswa: Siswa) : StatusUIDetail
@@ -27,4 +30,36 @@ class DetailViewModel(
     init {
         Log.d("DetailViewModel", "Init with siswaId: $siswaId")
         loadSiswa()
+    }
+
+    fun loadSiswa() {
+        viewModelScope.launch {
+            Log.d("DetailViewModel", "Loading siswa with ID: $siswaId")
+            statusUIDetail = StatusUIDetail.Loading
+
+            statusUIDetail = try {
+                val siswaList = repositorySiswa.getDataSiswa()
+                Log.d("DetailViewModel", "Got ${siswaList.size} siswa from repository")
+
+                siswaList.forEach {
+                    Log.d("DetailViewModel", "Siswa in list - ID: ${it.id} (${it.id.toInt()}), Nama: ${it.nama}")
+                }
+
+                val siswa = siswaList.find { it.id.toInt() == siswaId }
+
+                if (siswa != null) {
+                    Log.d("DetailViewModel", "Found siswa: ${siswa.nama}")
+                    StatusUIDetail.Success(siswa)
+                } else {
+                    Log.e("DetailViewModel", "Siswa with ID $siswaId not found!")
+                    StatusUIDetail.Error
+                }
+            } catch (e: IOException) {
+                Log.e("DetailViewModel", "IOException: ${e.message}", e)
+                StatusUIDetail.Error
+            } catch (e: Exception) {
+                Log.e("DetailViewModel", "Exception: ${e.message}", e)
+                StatusUIDetail.Error
+            }
+        }
     }
