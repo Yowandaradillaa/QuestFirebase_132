@@ -7,6 +7,7 @@ import com.example.myfirebase.repositori.RepositorySiswa
 import androidx.lifecycle.ViewModel
 import com.example.myfirebase.modeldata.Siswa
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import java.io.IOException

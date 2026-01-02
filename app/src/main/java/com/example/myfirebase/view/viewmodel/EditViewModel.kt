@@ -7,6 +7,7 @@ import com.example.myfirebase.repositori.RepositorySiswa
 import androidx.lifecycle.ViewModel
 import com.example.myfirebase.modeldata.UIStateSiswa
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import com.example.myfirebase.modeldata.DetailSiswa
 import com.example.myfirebase.modeldata.toDataSiswa
