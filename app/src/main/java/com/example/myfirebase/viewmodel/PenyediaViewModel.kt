@@ -1,6 +1,5 @@
-package com.example.myfirebase.view.viewmodel
+package com.example.myfirebase.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
