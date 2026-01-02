@@ -63,3 +63,17 @@ class DetailViewModel(
             }
         }
     }
+
+    suspend fun hapusSatuSiswa() {
+        viewModelScope.launch {
+            try {
+                Log.d("DetailViewModel", "Deleting siswa with ID: $siswaId")
+                repositorySiswa.deleteSiswa(siswaId.toLong())
+                Log.d("DetailViewModel", "Delete successful")
+            } catch (e: Exception) {
+                Log.e("DetailViewModel", "Delete error: ${e.message}", e)
+                e.printStackTrace()
+            }
+        }.join()
+    }
+}
