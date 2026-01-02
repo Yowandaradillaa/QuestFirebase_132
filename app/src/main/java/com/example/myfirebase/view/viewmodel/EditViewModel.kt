@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import com.example.myfirebase.modeldata.UIStateSiswa
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewModelScope
+import com.example.myfirebase.modeldata.DetailSiswa
+import com.example.myfirebase.modeldata.toDataSiswa
 import com.example.myfirebase.modeldata.toUiStateSiswa
 import kotlinx.coroutines.launch
 
@@ -41,3 +43,29 @@ class EditViewModel(
         }
     }
 
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa): Boolean {
+        return with(uiState) {
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+        }
+    }
+
+    fun updateUiState(detailSiswa: DetailSiswa) {
+        uiStateSiswa = UIStateSiswa(
+            detailSiswa = detailSiswa,
+            isEntryValid = validasiInput(detailSiswa)
+        )
+    }
+
+    suspend fun updateSiswa() {
+        if (validasiInput()) {
+            try {
+                Log.d("EditViewModel", "Updating siswa: ${uiStateSiswa.detailSiswa}")
+                repositorySiswa.updateSiswa(uiStateSiswa.detailSiswa.toDataSiswa())
+                Log.d("EditViewModel", "Update successful")
+            } catch (e: Exception) {
+                Log.e("EditViewModel", "Error updating: ${e.message}", e)
+                throw e
+            }
+        }
+    }
+}
