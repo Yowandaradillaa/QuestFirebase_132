@@ -70,3 +70,17 @@ fun DetailSiswaScreen(
                     val uiState = viewModel.statusUIDetail
                     Log.d("DetailScreen", "FAB clicked, current state: $uiState")
 
+                    when (uiState) {
+                        is StatusUIDetail.Success -> {
+                            val siswaId = uiState.siswa.id.toInt()
+                            Log.d("DetailScreen", "Navigating to edit with ID: $siswaId")
+                            navigateToEditItem(siswaId)
+                        }
+                        else -> {
+                            Log.w("DetailScreen", "Cannot navigate, state is not Success")
+                        }
+                    }
+                },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+            ) {
