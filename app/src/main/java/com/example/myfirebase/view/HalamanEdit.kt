@@ -1,5 +1,6 @@
 package com.example.myfirebase.view
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -9,6 +10,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myfirebase.view.route.DestinasiEdit
 import com.example.myfirebase.viewmodel.EditViewModel
 import com.example.myfirebase.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,4 +35,17 @@ fun EditSiswaScreen(
     ) { innerPadding ->
 
         val coroutineScope = rememberCoroutineScope()
+
+        EntrySiswaBody(
+            uiStateSiswa = viewModel.uiStateSiswa,
+            onSiswaValueChange = viewModel::updateUiState,
+            onSaveClick = {
+                coroutineScope.launch {
+                    viewModel.editSatuSiswa()
+                    navigateBack()
+                }
+            },
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
 }
