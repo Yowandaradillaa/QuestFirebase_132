@@ -56,4 +56,17 @@ fun DetailSiswaScreen(
         viewModel.loadSiswa()
     }
 
-    }
+    Scaffold(
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiDetail.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    val uiState = viewModel.statusUIDetail
+                    Log.d("DetailScreen", "FAB clicked, current state: $uiState")
+
