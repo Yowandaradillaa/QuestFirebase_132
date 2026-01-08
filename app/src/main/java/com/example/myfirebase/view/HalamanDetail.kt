@@ -121,3 +121,20 @@ private fun BodyDetailDataSiswa(
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
+        when (statusUIDetail) {
+            is StatusUIDetail.Success -> DetailDataSiswa(
+                siswa = statusUIDetail.siswa,
+                modifier = Modifier.fillMaxWidth()
+            )
+            is StatusUIDetail.Loading -> Text("Memuat data...")
+            is StatusUIDetail.Error -> Text("Error memuat data")
+        }
+
+        OutlinedButton(
+            onClick = { deleteConfirmationRequired = true },
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.delete))
+        }
+
