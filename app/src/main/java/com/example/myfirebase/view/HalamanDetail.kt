@@ -209,3 +209,15 @@ private fun BarisDetailData(
     }
 }
 
+@Composable
+private fun DeleteConfirmationDialog(
+    onDeleteConfirm: () -> Unit,
+    onDeleteCancel: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = { /* Do nothing */ },
+        title = { Text(stringResource(R.string.attention)) },
+        text = { Text(stringResource(R.string.tanya)) },
+        modifier = modifier,
+        dismissButton = {
