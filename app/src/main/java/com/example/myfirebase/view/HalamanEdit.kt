@@ -1,8 +1,12 @@
 package com.example.myfirebase.view
 
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myfirebase.view.route.DestinasiEdit
 import com.example.myfirebase.viewmodel.EditViewModel
 import com.example.myfirebase.viewmodel.PenyediaViewModel
 
@@ -17,3 +21,16 @@ fun EditSiswaScreen(
         factory = PenyediaViewModel.Factory
     )
 ) {
+    Scaffold(
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiEdit.titleRes),
+                canNavigateBack = true,
+                navigateUp = onNavigateUp
+            )
+        },
+        modifier = modifier
+    ) { innerPadding ->
+
+        val coroutineScope = rememberCoroutineScope()
+}
