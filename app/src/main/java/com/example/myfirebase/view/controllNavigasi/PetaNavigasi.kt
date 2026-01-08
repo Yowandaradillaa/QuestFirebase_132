@@ -100,15 +100,11 @@ fun HostNavigasi(
                 }
             )
         ) {
-            Log.d("Navigation", "Edit screen rendered")
             EditSiswaScreen(
-                navigateBack = {
-                    navController.popBackStack()
-                },
-                onNavigateUp = {
-                    navController.navigateUp()
-                }
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
+
     }
 }
