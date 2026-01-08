@@ -16,6 +16,7 @@ import com.example.myfirebase.view.route.DestinasiDetail
 import com.example.myfirebase.view.route.DestinasiEdit
 import com.example.myfirebase.view.route.DestinasiEntry
 import com.example.myfirebase.view.route.DestinasiHome
+import com.example.myfirebase.view.DetailSiswaScreen
 
 @Composable
 fun DataSiswaApp(
@@ -64,6 +65,27 @@ fun HostNavigasi(
             EntrySiswaScreen(
                 navigateBack = {
                     Log.d("Navigation", "Navigate back from Entry")
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            route = DestinasiDetail.routeWithArgs,
+            arguments = listOf(
+                navArgument(DestinasiDetail.itemIdArg) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            Log.d("Navigation", "Detail screen rendered")
+            DetailSiswaScreen(
+                navigateToEditItem = { siswaId ->
+                    val route = "${DestinasiEdit.route}/$siswaId"
+                    Log.d("Navigation", "Navigate to Edit: $route")
+                    navController.navigate(route)
+                },
+                navigateBack = {
                     navController.popBackStack()
                 }
             )
