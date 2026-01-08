@@ -221,3 +221,14 @@ private fun DeleteConfirmationDialog(
         text = { Text(stringResource(R.string.tanya)) },
         modifier = modifier,
         dismissButton = {
+            TextButton(onClick = onDeleteCancel) {
+                Text(stringResource(R.string.no))
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDeleteConfirm) {
+                Text(stringResource(R.string.yes))
+            }
+        }
+    )
+}
